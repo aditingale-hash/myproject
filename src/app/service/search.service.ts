@@ -14,4 +14,12 @@ export class searchService {
             .then(res => <data[]> res.data)
             .then(data => { return data; });
     }
+
+    getnewRhc() {
+        return this.http.get<any>('/assets/new.json')
+            .toPromise()
+            .then(res => <data[]> res.newdata)
+            .then(newdata => { return newdata; });
+           
+    }
 }

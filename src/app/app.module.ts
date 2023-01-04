@@ -8,6 +8,9 @@ import {TableModule} from 'primeng/table';
 import {CardModule} from 'primeng/card';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +23,10 @@ import {MessageModule} from 'primeng/message';
     TableModule,
     CardModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    InputTextModule,
+    ButtonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

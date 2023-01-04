@@ -1,14 +1,17 @@
 <p-card >
    
-
-<p-card>
+<form [formGroup]="reviewForm" (submit)="onPost()">
    
-    <ng-template pTemplate="caption">
+   <!-- <ng-template pTemplate="caption">
         <div style="text-align: left; background-color: white;">        
             <input type="text" pInputText size="50" placeholder=" rhc/product" (input)="dt.filter($event.target.value,'rhc', 'contains')" style="width:auto">
         </div>
-    </ng-template>
-</p-card>
+    </ng-template>-->
+
+    <input type="number"  placeholder=" rhc " formControlName="reviewText" /><button pButton label="get" type="submit" class="p-button-info"></button>
+   
+
+</form>
 
 <p-card>
    
@@ -39,13 +42,13 @@
 
         </tr>
     
-        <tr>
+       <!-- <tr>
             <th  *ngFor="let col of columns" [ngSwitch]="col.field">
                 <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
               <input *ngSwitchCase="'rhc'" pInputText type="text"
                 (input)="dt.filter($event.target.value, col.field, 'contains')" />
             </th>
-          </tr>
+          </tr>-->
         
     </ng-template>
 
@@ -58,6 +61,7 @@
                 {{rowData[col.field]}}
 
             </td>
+            
 
         </tr>
 
