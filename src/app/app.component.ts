@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { PrimeNGConfig } from 'primeng/api';
+import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { data } from 'src/assets/data';
 import { searchService } from './service/search.service';
 
@@ -25,6 +25,9 @@ loading: boolean = true;
   reviewForm: FormGroup;
   RhcArry: any;
  Arry: any;
+ date3: Date;
+
+ items: MenuItem[];
   //RhcArry:any[];
 //@ViewChild('dt') table: Table;
   constructor(private primengConfig: PrimeNGConfig,private searchService: searchService) { }
@@ -60,16 +63,21 @@ loading: boolean = true;
 
     { field: 'rhc', header: 'Rhc' },
 
-    { field: 'lineNum', header: 'lineNum' },
+    { field: 'lineNum ', header: 'lineNum' },
 
     { field: 'modelName', header: 'modelName' },
 
     { field: 'description', header: 'description' },
 
     { field: 'quantity', header: 'quantity' },
+    
     { field: 'promiseDate', header: 'promiseDate' }
 
   ];
+
+
+  //date 
+  
   }
   reset() {
 

@@ -1,34 +1,42 @@
 <p-card >
-   
+<!--    
 <form [formGroup]="reviewForm" (submit)="onPost()">
-   
-   <!-- <ng-template pTemplate="caption">
-        <div style="text-align: left; background-color: white;">        
-            <input type="text" pInputText size="50" placeholder=" rhc/product" (input)="dt.filter($event.target.value,'rhc', 'contains')" style="width:auto">
-        </div>
-    </ng-template>-->
+    
+    <input type="number" pInputText  placeholder=" rhc " formControlName="reviewText" /><button pButton label="get" type="submit" class="p-button-info"></button>
 
-    <input type="number"  placeholder=" rhc " formControlName="reviewText" /><button pButton label="get" type="submit" class="p-button-info"></button>
-   
+</form>-->
 
+<p-menubar [model]="items" >
+    
+    <form [formGroup]="reviewForm" (submit)="onPost()">
+       <label for="right-label" style="text-align: left;"><b>RHC/Order:</b></label>
+          <input style="margin-left: -260%;" id= "right-label" type="number" pInputText formControlName="reviewText"  >
+         
+    <button pButton pRipple type="submit" label="Get Order" class="p-button-secondary" icon="pi pi-download"></button>
+   
 </form>
+</p-menubar>
+<br>
 
 <p-card>
    
-    <ng-template pTemplate="caption">
-        <div style="text-align: left; background-color: white;">        
-            <input type="text" pInputText size="50" placeholder=" date " (input)="dt.filter($event.target.value,'promiseDate', 'contains')" style="width:auto">
+    <ng-template pTemplate="header">
+      
+        <br>
+        <br>
+       <div  style="margin-bottom: -2%;  margin-left: 2%;" >        
+       <input  style="text-align: left;"  type="text" pInputText size="25" placeholder="  search" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width: 25%;">
+       <label for="icon" style="margin-left: 50%;"><b>Cut Date:</b> &nbsp; &nbsp;</label>
+       <p-calendar  [(ngModel)]="date3"  [showIcon]="true" inputId="icon"></p-calendar>
         </div>
+
+    
+
     </ng-template>
-</p-card>
-<p-card>
+    
 <p-table #dt  [columns]="cols" [value]="Rhc" [paginator]="true" [rows]="10" [first]="first" [rowsPerPageOptions]="[10,20,30]">
     
-    <ng-template pTemplate="caption">
-        <div style="text-align: left; background-color: white;">        
-            <input type="text" pInputText size="50" placeholder="  search" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-        </div>
-    </ng-template>
+    
  
     <ng-template pTemplate="header" let-columns>
 

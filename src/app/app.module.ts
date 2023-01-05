@@ -11,9 +11,16 @@ import {MessageModule} from 'primeng/message';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MenubarModule} from 'primeng/menubar';
+import {CheckboxModule} from 'primeng/checkbox';
+import {CalendarModule} from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RippleModule } from 'primeng/ripple';
+//import {MenuItem} from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     MessageModule,
     InputTextModule,
     ButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MenubarModule,
+    CheckboxModule,
+    CalendarModule,
+    BrowserAnimationsModule,
+    RippleModule
+    
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
