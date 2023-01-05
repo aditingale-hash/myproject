@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { data } from 'src/assets/data';
 import { searchService } from './service/search.service';
@@ -27,13 +27,18 @@ loading: boolean = true;
  Arry: any;
  date3: Date;
 
+ rhcerror:boolean=false;
+ norhcerror:boolean=false;
+
  items: MenuItem[];
   //RhcArry:any[];
 //@ViewChild('dt') table: Table;
-  constructor(private primengConfig: PrimeNGConfig,private searchService: searchService) { }
+  constructor(private primengConfig: PrimeNGConfig,private searchService: searchService,private fb:FormBuilder) { }
 
   title = 'angularproject';
   ngOnInit() {
+
+
 
     this.searchService.getRhc().then(rhc => {
       this.Rhc = rhc;
@@ -42,11 +47,12 @@ loading: boolean = true;
       this.loading = false;
     });
 
-      this.reviewForm = new FormGroup({
+      this.reviewForm = this.fb.group({
 
-        reviewText : new FormControl()
-      
+       // reviewText : new FormControl('', Validators.required),
+        'reviewText': new FormControl('', Validators.required)
       });
+     
 
        this.searchService.getnewRhc().then(rhc => {
       this.NewRhc = rhc;
@@ -70,7 +76,7 @@ loading: boolean = true;
     { field: 'description', header: 'description' },
 
     { field: 'quantity', header: 'quantity' },
-    
+
     { field: 'promiseDate', header: 'promiseDate' }
 
   ];
@@ -92,13 +98,22 @@ loading: boolean = true;
       console.log(rhcText)
 
      // this.RhcArry = this.Rhc.filter(r=>r.modelName === rhcText);
-      this.RhcArry = this.NewRhc.filter(r=>r.rhc === rhcText);
+     // this.RhcArry = this.NewRhc.filter(r=>r.rhc === rhcText);
+      if(this.Rhc.find(r=>r.rhc === rhcText)){
       
-      this.Arry = this.NewRhc.find(r=>r.rhc === rhcText);
+        this.rhcerror=true;
+      }
+      else if(this.NewRhc.find(r=>r.rhc === rhcText))
+      {
+        this.Arry = this.NewRhc.find(r=>r.rhc === rhcText);
 
-      this.Rhc.push(this.RhcArry)
-      this.Rhc.push(this.Arry)
-
+        // this.Rhc.push(this.RhcArry)
+         this.Rhc.push(this.Arry)
+      }
+      else if(!(this.Rhc.find(r=>r.rhc === rhcText)) && !(this.NewRhc.find(r=>r.rhc === rhcText)) ){
+        this.norhcerror=true;
+        
+      }
      console.log("searched text :" +  JSON.stringify(this.RhcArry) )
 
      console.log( this.Arry )

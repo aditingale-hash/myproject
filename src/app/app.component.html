@@ -1,18 +1,29 @@
-<p-card >
-<!--    
-<form [formGroup]="reviewForm" (submit)="onPost()">
-    
-    <input type="number" pInputText  placeholder=" rhc " formControlName="reviewText" /><button pButton label="get" type="submit" class="p-button-info"></button>
-
-</form>-->
+<p-card >    
 
 <p-menubar [model]="items" >
     
     <form [formGroup]="reviewForm" (submit)="onPost()">
-       <label for="right-label" style="text-align: left;"><b>RHC/Order:</b></label>
-          <input style="margin-left: -260%;" id= "right-label" type="number" pInputText formControlName="reviewText"  >
-         
-    <button pButton pRipple type="submit" label="Get Order" class="p-button-secondary" icon="pi pi-download"></button>
+       <label aria-required="true" class="form-label required"  for="right-label" ><b>RHC/Order:</b></label>
+
+         <!-- <p-inputNumber  id= "right-label" type="number"  aria-describedby="username-help"  class="p-invalid" pInputText formControlName="reviewText"  ></p-inputNumber>
+          <p-message severity="error" text="Line No is required" *ngIf="!reviewForm.controls['reviewText'].valid&&reviewForm.controls['reviewText'].dirty"></p-message>
+          -->
+          <div class="p-field p-col-12 p-md-3">
+
+            <label aria-required="true" class="form-label required">Line</label>
+  
+            <input placeholder="3000" formControlName="reviewText" type="number" aria-required="true">
+  
+           
+  
+            <p-message severity="error" style="background-color:aliceblue;" text="Line No is required" *ngIf="!reviewForm.controls['reviewText'].valid&&reviewForm.controls['reviewText'].dirty"></p-message>
+  
+          </div>
+          <small *ngIf="rhcerror" id="username-help" class="p-invalid">Already Present In table</small>
+          <small *ngIf="norhcerror" id="username-help" class="p-invalid">No Record Found In table</small>
+          <label for="icon" ><b>Cut Date:</b> &nbsp; &nbsp;</label>
+          <p-calendar  [(ngModel)]="date3"  [showIcon]="true" inputId="icon"></p-calendar>
+    <button  pButton pRipple type="submit" label="Get Order" class="p-button-secondary" icon="pi pi-download"></button>
    
 </form>
 </p-menubar>
