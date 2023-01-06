@@ -29,23 +29,22 @@ export class AppComponent implements OnInit {
 
 
   items: MenuItem[];
- 
 
 
-  fullmsg:boolean=false;
-emptymsg:boolean=false;
-  errormsg: boolean = false;
+  norhcerror: boolean = false;
+  emptymsg: boolean = false;
+
 
   rhcerror: boolean = false;
 
   dateerror: boolean = false;
 
-  norhcerror: boolean = false;
- 
-  submitted=false
+
+
+  submitted = false
   //RhcArry:any[];
   //@ViewChild('dt') table: Table;
-  constructor(private primengConfig: PrimeNGConfig, private searchService: searchService,private fb:FormBuilder) { }
+  constructor(private primengConfig: PrimeNGConfig, private searchService: searchService, private fb: FormBuilder) { }
 
   title = 'angularproject';
   ngOnInit() {
@@ -59,8 +58,8 @@ emptymsg:boolean=false;
 
     this.reviewForm = this.fb.group({
 
-      reviewText: ['',Validators.required],
-      datedata: ['',Validators.required]
+      reviewText: ['', Validators.required],
+      datedata: ['', Validators.required]
 
     });
 
@@ -103,7 +102,7 @@ emptymsg:boolean=false;
 
   onPost() {
 
-   
+
 
     let rhcText = this.reviewForm.value.reviewText;
     let promise = this.reviewForm.value.datedata;
@@ -122,30 +121,44 @@ emptymsg:boolean=false;
       // this.Rhc.push(this.RhcArry)
       this.Rhc.push(this.Arry)
     }
-  //  else if (this.reviewForm.value.reviewText){
+    //  else if (this.reviewForm.value.reviewText){
     //  this.errormsg = true;
     //}
-    else if((this.reviewForm.value.reviewText===null) || !this.reviewForm.value.datedata){
-            this.emptymsg=true;
+    if (!(this.reviewForm.value.reviewText)) {
+      if (!(this.reviewForm.value.datedata)) { this.emptymsg = true; }
     }
 
-    if(this.NewRhc.find(r => r.rhc === rhcText)){
-      this.norhcerror=false;
-    }else if(this.Rhc.find(r => r.rhc === rhcText)){
-      this.norhcerror=false;
-    }else{
-      this.norhcerror=true;
-    }
-    
 
-     if(this.reviewForm.value.reviewText && this.reviewForm.value.datedata){
-          this.fullmsg=true;
-}
+
+    if (this.NewRhc.find(r => r.rhc === rhcText)) {
+
+      this.norhcerror = false;
+
+    } else if (this.Rhc.find(r => r.rhc === rhcText)) {
+
+      this.norhcerror = false;
+
+    } if (this.NewRhc.find(r => r.rhc === promise)) {
+
+      this.norhcerror = false;
+
+    } else if (this.Rhc.find(r => r.rhc === promise)) {
+
+      this.norhcerror = false;
+
+    } else {
+
+      this.norhcerror = true;
+
+    }
+
+
+
     console.log("searched text :" + JSON.stringify(this.RhcArry))
-//console.log("date:" +JSON.stringify(this.date))
+    //console.log("date:" +JSON.stringify(this.date))
     console.log(this.Arry)
     console.log(typeof (this.Arry))
- 
+
     let month = promise.getMonth() + 1;
 
     let day = promise.getDate();
@@ -173,24 +186,8 @@ emptymsg:boolean=false;
 
 
     if (this.Rhc.find(r => r.promiseDate === finalDate)) {
-
-
-
       this.dateerror = true;
-
-    }
-
-    if (!(this.Rhc.find(r => r.promiseDate === finalDate))) {
-
-
-
-      this.norhcerror = true;
-
-    }
-
-   
-
-    else if(this.NewRhc.find(r => r.promiseDate === finalDate)){
+    } else if (this.NewRhc.find(r => r.promiseDate === finalDate)) {
 
 
 
@@ -198,21 +195,21 @@ emptymsg:boolean=false;
 
       this.Rhc.push(this.Arry)
 
-   
+
 
     }
 
-    console.log("DAte Arry :" +  JSON.stringify(this.Arry))
+    console.log("DAte Arry :" + JSON.stringify(this.Arry))
 
 
 
     console.log("DATE IS :" + promise.getFullYear() + '-' + month + '-' + day);
 
-    console.log("DATE IS :" + typeof(promise.getFullYear() + '-' + month + '-' + day));
+    console.log("DATE IS :" + typeof (promise.getFullYear() + '-' + month + '-' + day));
 
     this.submitted = true
-    
-    if(this.reviewForm.invalid){
+
+    if (this.reviewForm.invalid) {
       return
     }
   }
@@ -222,8 +219,8 @@ emptymsg:boolean=false;
 
 
 }
-   
-  
+
+
 
 
 

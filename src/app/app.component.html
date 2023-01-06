@@ -1,5 +1,3 @@
-
-
 <p-card>
 
 
@@ -14,66 +12,81 @@
             <form [formGroup]="reviewForm" (submit)="onPost()">
 
                 <div class="row">
-                <div class="col">
-                <label aria-required="true" class="form-label required" style="margin-right:0%; margin-left: -400%; margin-bottom: 3%;" for="right-label"><b>RHC/Order:</b></label>
-</div>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <div class="col">
-                <input  class="form-control" style="margin-right:0%; margin-left: -250%;"  placeholder="order" formControlName="reviewText" type="number" aria-required="true">
-                <div  class="text-danger" *ngIf="!reviewForm.controls['reviewText'].valid && 
-                reviewForm.controls['reviewText']?.touched"> Rhc value is required</div>
-            </div>
-                
-
-                <small *ngIf="rhcerror" id="username-help" class="p-invalid">Already Present In table</small>
-
-                <small *ngIf="norhcerror" id="username-help" class="p-invalid">No Record Found In table</small>
-
-                <small *ngIf="errormsg" id="username-help" class="p-invalid">RHC Required</small>
-               
-              
-
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-               
-                <div class="col">
-                <button
-
-                    style="border-radius: 50px;border: 0px; size: 30px; color: red; background-color: rgb(241, 238, 238); padding: 5px; ">OR</button></div>
-
-
-
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
-                <div class="col">
-                <label for="icon"><b>Promise Date:</b> </label>
-</div>
-                &nbsp; &nbsp;&nbsp; &nbsp;
-                <div class="col">
-                <p-calendar  [showIcon]="true" inputId="icon" formControlName="datedata"
-
-                    dateFormat="yy-mm-dd"></p-calendar>
+                    <div class="col">
+                        <label aria-required="true" class="form-label required"
+                            style="margin-right:0%; margin-left: -400%; margin-bottom: 3%;"><b>RHC/Order:</b></label>
                     </div>
-                    <span  class="text-danger" *ngIf="!reviewForm.controls['datedata'].valid && 
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="col">
+                        <input class="form-control" style="margin-right:0%; margin-left: -250%;" placeholder="order"
+                            formControlName="reviewText" type="number" aria-required="true" id="rhcnumber">
+                        <div class="text-danger" *ngIf="!reviewForm.controls['reviewText'].valid && 
+                reviewForm.controls['reviewText']?.touched"> Rhc value is required</div>
+                    </div>
+                    <div class="text-danger" *ngIf="reviewForm.controls['reviewText'].valid && 
+            reviewForm.controls['datedata'].valid && submitted "> Only one Rhc or Date value is required
+                    </div>
+
+
+
+
+
+
+
+
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                    <div class="col">
+                        <button
+                            style="border-radius: 50px;border: 0px; size: 30px; color: red; background-color: rgb(241, 238, 238); padding: 5px; ">OR</button>
+                    </div>
+
+
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+                    <div class="col">
+                        <label for="icon"><b>Promise Date:</b> </label>
+                    </div>
+                    &nbsp; &nbsp;&nbsp; &nbsp;
+                    <div class="col">
+                        <p-calendar [showIcon]="true" inputId="icon" formControlName="datedata"
+                            dateFormat="yy-mm-dd"></p-calendar>
+                    </div>
+                    <span class="text-danger" *ngIf="!reviewForm.controls['datedata'].valid && 
                     reviewForm.controls['datedata']?.touched"> Date value is required</span>
 
-                   
-                <small *ngIf="dateerror" id="username-help" class="p-invalid">Already Present In table</small>
-                <small *ngIf="emptymsg" id="username-help" class="p-invalid">please enter Rhc or Date Emter </small>
-                <small *ngIf="fullmsg" id="username-help" class="p-invalid">only one field Either Rhc or Date Emter</small>
+                    <small *ngIf="rhcerror" id="username-help" class="p-invalid text-danger">Already Present In
+                        table</small>
+
+                    <small *ngIf="emptymsg" id="username-help" class="p-invalid text-danger"> dont keep it blank please
+                        enter Rhc or Date
+                        Emter </small>
 
 
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                
-                <div class="col">
-                <button pButton pRipple type="submit" style label="Get Order" class="p-button-secondary"
+                    <small *ngIf="dateerror" id="username-help" class="p-invalid text-danger">Already Present In
+                        table</small>
+                    <div *ngIf="!rhcerror">
+                        <div *ngIf="!dateerror">
+                            <div
+                                *ngIf="!(reviewForm.controls['reviewText'].valid && reviewForm.controls['datedata'].valid && submitted)">
+                                <div *ngIf="!emptymsg">
+                                    <small *ngIf="norhcerror" id="username-help" class="p-invalid">No Record Found In
+                                        table</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button pButton pRipple type="submit" style label="Get Order" class="p-button-secondary"
+                            icon="pi pi-download"></button>
 
-                    icon="pi pi-download"></button>
-
+                    </div>
                 </div>
-            </div>
 
             </form>
 
@@ -106,7 +119,6 @@
 
 
         <p-table #dt [value]="Rhc" [paginator]="true" [rows]="10" [first]="first" [paginator]="true"
-
             [rowsPerPageOptions]="[10,20,30]" [globalFilterFields]="[
 
             'rhc',
@@ -117,7 +129,7 @@
 
             'promiseDate'
 
-          ]" >
+          ]">
 
 
 
@@ -125,36 +137,27 @@
 
                 <div class="table-header">
 
-                 
 
-                  <span class="p-input-icon-left">
 
-                    <i class="pi pi-search"></i>
+                    <span class="p-input-icon-left">
 
-                    <input
+                        <i class="pi pi-search"></i>
 
-                      pInputText
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Global Search" />
 
-                      type="text"
+                    </span>
 
-                      (input)="dt.filterGlobal($event.target.value, 'contains')"
-
-                      placeholder="Global Search"
-
-                    />
-                    
-                  </span>
-                  
 
                 </div>
 
-              </ng-template>
+            </ng-template>
 
 
 
             <ng-template pTemplate="header">
 
-               
+
 
 
 
@@ -164,7 +167,7 @@
 
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
 
-                      </th>
+                    </th>
 
 
 
@@ -279,11 +282,9 @@
                         <span class="p-column-title">ACTIONS</span>
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-
                             class="bi bi-pencil-fill" viewBox="0 0 16 16">
 
                             <path
-
                                 d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
 
                         </svg>
