@@ -1,5 +1,3 @@
-
-
 <p-card>
 
 
@@ -11,18 +9,19 @@
         <div class="bar">
 
 
+
             <form [formGroup]="reviewForm" (submit)="onPost()">
 
-                <div class="row">
-                <div class="col">
-                <label aria-required="true" class="form-label required" style="margin-right:0%; margin-left: -400%; margin-bottom: 3%;" for="right-label"><b>RHC/Order:</b></label>
-</div>
+
+
+                <label aria-required="true" class="form-label required" for="right-label"><b>RHC/Order:</b></label>
+
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <div class="col">
-                <input  class="form-control" style="margin-right:0%; margin-left: -250%;"  placeholder="order" formControlName="reviewText" type="number" aria-required="true">
+
+                <input  class="form-control"  placeholder="order" formControlName="reviewText" type="number" aria-required="true">
                 <div  class="text-danger" *ngIf="!reviewForm.controls['reviewText'].valid && 
                 reviewForm.controls['reviewText']?.touched"> Rhc value is required</div>
-            </div>
+                
                 
 
                 <small *ngIf="rhcerror" id="username-help" class="p-invalid">Already Present In table</small>
@@ -36,10 +35,10 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                
-                <div class="col">
+
                 <button
 
-                    style="border-radius: 50px;border: 0px; size: 30px; color: red; background-color: rgb(241, 238, 238); padding: 5px; ">OR</button></div>
+                    style="border-radius: 50px;border: 0px; size: 30px; color: red; background-color: rgb(241, 238, 238); padding: 5px; ">OR</button>
 
 
 
@@ -47,33 +46,30 @@
 
 
 
-                <div class="col">
+
                 <label for="icon"><b>Promise Date:</b> </label>
-</div>
+
                 &nbsp; &nbsp;&nbsp; &nbsp;
-                <div class="col">
+
                 <p-calendar  [showIcon]="true" inputId="icon" formControlName="datedata"
 
                     dateFormat="yy-mm-dd"></p-calendar>
-                    </div>
                     <span  class="text-danger" *ngIf="!reviewForm.controls['datedata'].valid && 
                     reviewForm.controls['datedata']?.touched"> Date value is required</span>
 
-                   
+                    
                 <small *ngIf="dateerror" id="username-help" class="p-invalid">Already Present In table</small>
                 <small *ngIf="emptymsg" id="username-help" class="p-invalid">please enter Rhc or Date Emter </small>
                 <small *ngIf="fullmsg" id="username-help" class="p-invalid">only one field Either Rhc or Date Emter</small>
 
 
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                
-                <div class="col">
-                <button pButton pRipple type="submit" style label="Get Order" class="p-button-secondary"
+
+                <button pButton pRipple type="submit" label="Get Order" class="p-button-secondary"
 
                     icon="pi pi-download"></button>
 
-                </div>
-            </div>
+
 
             </form>
 
@@ -142,9 +138,8 @@
                       placeholder="Global Search"
 
                     />
-                    
+
                   </span>
-                  
 
                 </div>
 

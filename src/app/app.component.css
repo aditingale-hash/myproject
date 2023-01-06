@@ -1,13 +1,30 @@
 required:after {
-
- 
-
     content:" *";
-
- 
-
     color: red;
+  }
+
+  input.ng-invalid.ng-touched {
+    border: red 1px solid;
+}
+
+.bar{
+
+  width: 1200px;
+
+  margin: auto;
+
+  text-align: center;
+
+  padding: 1%;
+
+  border-radius: 8px;
+
+  padding-right: 6%;
 
  
 
-  }
+ 
+
+}   
+  
+  
