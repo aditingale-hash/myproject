@@ -27,9 +27,11 @@ export class AppComponent implements OnInit {
   Arry: any;
   date3: Date;
 
-
+   
   items: MenuItem[];
 
+  founderror: boolean = false;
+  founderror1: boolean = false;
 
   norhcerror: boolean = false;
   emptymsg: boolean = false;
@@ -101,7 +103,8 @@ export class AppComponent implements OnInit {
   }
 
   onPost() {
-
+    
+ 
 
 
     let rhcText = this.reviewForm.value.reviewText;
@@ -111,6 +114,16 @@ export class AppComponent implements OnInit {
 
     // this.RhcArry = this.Rhc.filter(r=>r.modelName === rhcText);
     // this.RhcArry = this.NewRhc.filter(r=>r.rhc === rhcText);
+   
+    if (this.NewRhc.find(r => r.rhc === rhcText)) {
+
+      this.founderror = true;
+    }
+    
+    if (this.NewRhc.find(r => r.rhc === promise)) {
+      this.founderror1 = true;
+    }
+   
     if (this.Rhc.find(r => r.rhc === rhcText)) {
 
       this.rhcerror = true;

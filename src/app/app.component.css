@@ -1,30 +1,81 @@
 required:after {
-    content:" *";
+
+ 
+
+  content:" *";
+
+
+
+  color: red;
+
+
+
+}
+
+
+.bar{
+  
+  margin: 2%;
+  text-align: center;
+  padding: 1%;
+  border-radius: 8px;
+  /* padding-right: 6%; */
+  background-color: rgb(230, 230, 230);
+  text-align: center;
+  /* margin-top: 1%; */
+  padding-left: 8%;
+}
+
+  .btn-or {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+    border: 2px;
+    
     color: red;
+    background-color: rgb(214, 208, 208);
+    padding: 15px;
+  }
+
+  .btn-plus{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+    border: 2px;
+    
+    color: red;
+    background-color: rgb(233, 227, 227);
+    padding: 15px;
   }
 
   input.ng-invalid.ng-touched {
     border: red 1px solid;
 }
 
-.bar{
+:host ::ng-deep.p-paginator-rpp-options{
+  position: absolute;
+  margin-top: -423px;
+  margin-left: -1255px;
+}
 
-  width: 1200px;
-
-  margin: auto;
-
-  text-align: center;
-
-  padding: 1%;
-
-  border-radius: 8px;
-
-  padding-right: 6%;
-
- 
-
- 
-
-}   
+:host ::ng-deep.p-paginator-current{
+  position: absolute;
+  margin-top: -796px;
+  margin-left: -1955px;
   
   
+}
+
+:host ::ng-deep.p-datatable .p-paginator-bottom{
+  position: absolute;
+  margin-left: 1180px;
+}
+
+:host ::ng-deep.p-card .p-card-body{
+  padding-bottom: 4%;
+}
+
+
+

@@ -1,304 +1,219 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+
+
+<div class="bar">
+
+
+    <form [formGroup]="reviewForm" (submit)="onPost()" class="g-3 needs-validation" novalidate="">
+
+        <div class="row" style="margin: auto; margin-top: 1%;">
+
+            <div class="col-md-1">
+                <label aria-required="true" class="form-label required"><b>RHC/Order:</b></label>
+
+            </div>
+            <div class="col-md-2">
+                <input pInputText class="form-control" formControlName="reviewText" type="number" aria-required="true"
+                    id="rhcnumber">
+                <div class="text-danger"
+                    *ngIf="!reviewForm.controls['reviewText'].valid && reviewForm.controls['reviewText']?.touched">
+                    Rhc value is required
+                </div>
+            </div>
+
+
+            <div class="col-md-1" style="padding-left: 5%;">
+
+                <button class="btn-or">OR</button>
+            </div>
+
+            <div class="col-md-2" style="margin-right: -3%;">
+                <label for="icon"><b>Promise Date:</b> </label>
+            </div>
+            <div class="col-md-2">
+                <p-calendar [showIcon]="true" inputId="icon" formControlName="datedata"
+                    dateFormat="yy-mm-dd"></p-calendar>
+                <div class="text-danger" *ngIf="!reviewForm.controls['datedata'].valid && 
+            reviewForm.controls['datedata']?.touched">
+                    Date value is required
+                </div>
+            </div>
+
+
+
+            <div class="col-auto">
+
+                <button pButton pRipple type="submit" style label="Get Order" class="p-button-secondary"
+                    icon="pi pi-download"></button>
+                <div *ngIf="emptymsg" id="username-help" class="p-invalid text-danger">
+                    RHC or Promise Date required , No records fetched
+                </div>
+                <div *ngIf="rhcerror" id="username-help" class="p-invalid text-danger">
+                    Already Present In table
+                </div>
+                <div class="text-danger" *ngIf="reviewForm.controls['reviewText'].valid && 
+            reviewForm.controls['datedata'].valid && submitted ">
+                    Only one Rhc or Date value is required
+                </div>
+                <div *ngIf="dateerror" id="username-help" class="p-invalid text-danger">
+                    Already Present In table
+                </div>
+                <div *ngIf="founderror" id="username-help" class="p-invalid text-danger">
+                 Record Fectched..
+                </div>
+                <div *ngIf="founderror1" id="username-help" class="p-invalid text-danger">
+                    Record Fectched
+                </div>
+
+                <div *ngIf="!rhcerror">
+                    <div *ngIf="!dateerror">
+                        <div
+                            *ngIf="!(reviewForm.controls['reviewText'].valid && reviewForm.controls['datedata'].valid && submitted)">
+                            <div *ngIf="!emptymsg">
+                                <div *ngIf="!founderror">
+                                    <div *ngIf="!founderror1">
+                                <small *ngIf="norhcerror" id="username-help" class="p-invalid text-danger">No Record Found In
+                                    table</small>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <p-card>
 
 
 
-    <p-menubar [model]="items" [style]="{'margin-right':'100px','margin-left':'100px'}" class="menu">
+    <br>
+    <div style="margin-left: 40px;">
+        <h2>Orders</h2>
+        <br>
 
-
-
-        <div class="bar">
-
-
-            <form [formGroup]="reviewForm" (submit)="onPost()">
-
-                <div class="row">
-                    <div class="col">
-                        <label aria-required="true" class="form-label required"
-                            style="margin-right:0%; margin-left: -400%; margin-bottom: 3%;"><b>RHC/Order:</b></label>
-                    </div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="col">
-                        <input class="form-control" style="margin-right:0%; margin-left: -250%;" placeholder="order"
-                            formControlName="reviewText" type="number" aria-required="true" id="rhcnumber">
-                        <div class="text-danger" *ngIf="!reviewForm.controls['reviewText'].valid && 
-                reviewForm.controls['reviewText']?.touched"> Rhc value is required</div>
-                    </div>
-                    <div class="text-danger" *ngIf="reviewForm.controls['reviewText'].valid && 
-            reviewForm.controls['datedata'].valid && submitted "> Only one Rhc or Date value is required
-                    </div>
-
-
-
-
-
-
-
-
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-                    <div class="col">
-                        <button
-                            style="border-radius: 50px;border: 0px; size: 30px; color: red; background-color: rgb(241, 238, 238); padding: 5px; ">OR</button>
-                    </div>
-
-
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
-                    <div class="col">
-                        <label for="icon"><b>Promise Date:</b> </label>
-                    </div>
-                    &nbsp; &nbsp;&nbsp; &nbsp;
-                    <div class="col">
-                        <p-calendar [showIcon]="true" inputId="icon" formControlName="datedata"
-                            dateFormat="yy-mm-dd"></p-calendar>
-                    </div>
-                    <span class="text-danger" *ngIf="!reviewForm.controls['datedata'].valid && 
-                    reviewForm.controls['datedata']?.touched"> Date value is required</span>
-
-                    <small *ngIf="rhcerror" id="username-help" class="p-invalid text-danger">Already Present In
-                        table</small>
-
-                    <small *ngIf="emptymsg" id="username-help" class="p-invalid text-danger"> dont keep it blank please
-                        enter Rhc or Date
-                        Emter </small>
-
-
-                    <small *ngIf="dateerror" id="username-help" class="p-invalid text-danger">Already Present In
-                        table</small>
-                    <div *ngIf="!rhcerror">
-                        <div *ngIf="!dateerror">
-                            <div
-                                *ngIf="!(reviewForm.controls['reviewText'].valid && reviewForm.controls['datedata'].valid && submitted)">
-                                <div *ngIf="!emptymsg">
-                                    <small *ngIf="norhcerror" id="username-help" class="p-invalid">No Record Found In
-                                        table</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <button pButton pRipple type="submit" style label="Get Order" class="p-button-secondary"
-                            icon="pi pi-download"></button>
-
-                    </div>
-                </div>
-
-            </form>
-
-
-
-        </div>
-
-
-
-
-    </p-menubar>
-
-
+        <h6>Rows per Page</h6>
+    </div>
 
     <br>
 
-    <div style="margin-left: 40px;">
 
-        <h2>Orders</h2>
-
-        <h6>Rows per Page:</h6>
-
-    </div>
-
-
-
-
-    <p-card>
+    <div>
 
 
 
         <p-table #dt [value]="Rhc" [paginator]="true" [rows]="10" [first]="first" [paginator]="true"
             [rowsPerPageOptions]="[10,20,30]" [globalFilterFields]="[
-
             'rhc',
-
             'modelName',
-
             'description',
-
             'promiseDate'
-
-          ]">
-
-
+          ]" showCurrentPageReport="true" currentPageReportTemplate=" {first} - {last} of {totalRecords} ">
 
             <ng-template pTemplate="caption">
-
                 <div class="table-header">
 
-
-
                     <span class="p-input-icon-left">
-
                         <i class="pi pi-search"></i>
-
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                            placeholder="Global Search" />
-
+                            placeholder="Search" />
                     </span>
 
+                    <label for="icon" style="margin-left: 50%;"><b>Cut Date:</b> &nbsp; &nbsp;</label>
 
+                    <p-calendar [(ngModel)]="date3" [showIcon]="true" inputId="icon"></p-calendar>
+                    &nbsp;&nbsp;
+                    <button class="btn-plus"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                        </svg></button>
                 </div>
-
             </ng-template>
-
-
 
             <ng-template pTemplate="header">
 
 
-
-
-
                 <tr>
-
                     <th>
-
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-
                     </th>
-
-
 
                     <th pSortableColumn="rhc">
-
                         RHC <p-sortIcon field="rhc"></p-sortIcon>
-
                     </th>
-
                     <th pSortableColumn="promiseDate">
-
                         PROMISE DATE <p-sortIcon field="promiseDate"></p-sortIcon>
-
                     </th>
-
                     <th>
-
                         LINE NUM
-
                     </th>
-
                     <th pSortableColumn="modelName">
-
                         MODEL NAME <p-sortIcon field="modelName"></p-sortIcon>
-
                     </th>
-
                     <th pSortableColumn="description">
-
                         DESCRIPTION <p-sortIcon field="description"></p-sortIcon>
-
                     </th>
-
                     <th pSortableColumn="quantity">
-
                         QUANTITY <p-sortIcon field="quantity"></p-sortIcon>
-
                     </th>
-
                     <th>
-
                         Actions
-
                     </th>
-
                 </tr>
 
-
-
             </ng-template>
-
             <ng-template pTemplate="body" let-Rhc>
-
                 <tr class="p-selectable-row">
-
                     <td>
-
                         <p-tableCheckbox [value]="Rhc"></p-tableCheckbox>
-
                     </td>
-
                     <td>
-
                         <span class="p-column-title">RHC</span>
-
                         {{ Rhc.rhc }}
-
                     </td>
-
                     <td>
-
                         <span class="p-column-title">PROMISE DATE</span>
-
                         {{ Rhc.promiseDate }}
-
                     </td>
-
                     <td>
-
                         <span class="p-column-title">LINE NUM</span>
-
                         <span>{{ Rhc.lineNum }}</span>
-
                     </td>
-
                     <td>
-
                         <span class="p-column-title">MODEL NAME</span>
-
                         {{ Rhc.modelName }}
-
                     </td>
-
                     <td>
-
                         <span class="p-column-title">DESCRIPTION</span>
-
                         {{ Rhc.description }}
-
                     </td>
-
                     <td>
-
                         <span class="p-column-title">QUANTITY</span>
-
                         {{ Rhc.quantity }}
-
                     </td>
-
                     <td>
-
                         <span class="p-column-title">ACTIONS</span>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-
-                        </svg>
-
+                        <button style="border: none; background-color: white;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                            </svg></button>
                     </td>
-
                 </tr>
-
             </ng-template>
-
         </p-table>
 
-
-
-    </p-card>
+    </div>
 
 </p-card>
